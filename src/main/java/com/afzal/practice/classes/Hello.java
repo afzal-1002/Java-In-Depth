@@ -1,4 +1,4 @@
-package main.java.classes;
+package main.java.com.afzal.practice.classes;
 
 public class Hello {
 
