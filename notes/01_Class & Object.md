@@ -157,3 +157,58 @@ By Default:
 	doube num = 4.88;
 	double num = 4.88d;
 	float gpa = 2.53f;
+
+BigDecimal: (import java.math.BigDecimal;)
+		BigDecimal is a Java class used to store very precise decimal numbers.
+
+		When dealing with money use BigDecimal:
+		Avoid Float and Double when exact answer are require
+		BigDecimal one =  new BigDecimal("0.1");
+		BigDecimal second =  new BigDecimal("0.2");
+		System.out.println(one.add(secnd));
+
+Methods:
+		add subtract multiply divide compaterTo
+		int x = 10;
+		BigDecimal bd = BigDecimal.valueOf(x);
+
+Get user input and convert to BigDecimal:
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter number:");
+		BigDecimal number = new BigDecimal(sc.nextLine());
+		System.out.println(number);
+
+Create an Array of BigDecimal:
+		import java.math.BigDecimal;
+
+		BigDecimal[] numbers = new BigDecimal[3];
+
+		numbers[0] = new BigDecimal("10.5");
+		numbers[1] = new BigDecimal("20.7");
+		numbers[2] = new BigDecimal("30.9");
+
+Create a List of BigDecimal:
+		import java.math.BigDecimal;
+		import java.util.ArrayList;
+		import java.util.List;
+
+		List<BigDecimal> numbers = new ArrayList<>();
+
+		numbers.add(new BigDecimal("10.5"));
+		numbers.add(new BigDecimal("20.7"));
+		numbers.add(new BigDecimal("30.9"));
+
+Stream on List of BigDecimal:
+		numbers.stream().forEach(System.out::println);
+
+		Filter values greater than 20
+		numbers.stream().filter(n -> n.compareTo(new BigDecimal("20"))> 0).forEach(System.out::println);
+
+Most important BigDecimal operations:
+		| Operation | Method           |
+		| --------- | ---------------- |
+		| add       | `a.add(b)`       |
+		| subtract  | `a.subtract(b)`  |
+		| multiply  | `a.multiply(b)`  |
+		| divide    | `a.divide(b)`    |
+		| compare   | `a.compareTo(b)` |
