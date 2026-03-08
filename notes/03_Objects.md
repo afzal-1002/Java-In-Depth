@@ -1,5 +1,3 @@
----
-
 # Object References in Java
 
 In Java, **objects are accessed using references**.
@@ -8,11 +6,6 @@ Example:
 
 ```java
 Student s = new Student();
-```
-
-This line performs **two operations**.
-
----
 
 ## 1️⃣ Create a Reference Variable
 
