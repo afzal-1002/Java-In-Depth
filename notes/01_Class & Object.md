@@ -37,11 +37,13 @@ are two Methods and variables:
 
 # Variables
 ## 1. Variables :  <Type> <name> [=literal or expression]
-Every Variable has a data type (Java is static Type Language) 
-it holds the value ();
+Every Variable has a data type (Java is static Type Language)  it holds the value;
+Type is fixed: When we declare the varible we define the type can not be changed.
+
 int num = 45;
 String name = " Muhammad" 
-Type is fixed: When we declare the varible we define the type can not be changed.
+int num = 45_5; 
+
 
 String name = "Muhammad" | Object Reference
 String name = new String("Muhammad") | Object Reference
@@ -92,3 +94,66 @@ Java has **8 primitive data types**:
 Range example
 byte: -128 → 127
 Because: 2^8 = 256 values
+
+Byte.MAX_VALUE;
+Byte.MIN_VALUE;
+
+long num = 5465454L;
+
+Hexa formate: 
+	MAX_VALUE = 0x7ffffff;
+	int intHex= 0x0041 // 16 power 0 + 1 + 16 poewer 1 * 4
+	long longHex = 0x004L;
+
+Octal: 
+	int intOctal = 0101;
+
+Binary: 
+	int intBinary = 0b01000001; => 65
+	So Java reads it as: 01000001
+	| Bit | Value   |
+	| --- | ------- |
+	| 1   | 2⁰ = 1  |
+	| 0   | 2¹ = 0  |
+	| 0   | 2² = 0  |
+	| 0   | 2³ = 0  |
+	| 0   | 2⁴ = 0  |
+	| 0   | 2⁵ = 0  |
+	| 1   | 2⁶ = 64 |
+	| 0   | 2⁷ = 0  |
+
+	64 + 1 = 65
+	0b0100_0001 = 65
+
+	char c = 0b0100_0001;
+	System.out.println(c); => A
+
+	int x = 0b0100_0001;
+	System.out.println(x); => 65
+
+
+** Floating point **
+| Type       | Bit depth | Value range         | Default | Precision            |
+| ---------- | --------- | ------------------- | ------- | -------------------- |
+| **float**  | 32 bits   | -3.4E38 to 3.4E38   | 0.0f    | 6–7 decimal digits   |
+| **double** | 64 bits   | -1.7E308 to 1.7E308 | 0.0d    | 15–16 decimal digits |
+
+float:
+	Uses 32 bits
+	Stores numbers roughly between
+	-3.4 × 10³⁸ and 3.4 × 10³⁸
+	Precision: 6–7 digits
+	float x = 3.14f;
+
+double:
+	Uses 64 bits
+	Stores numbers roughly between
+	-1.7 × 10³⁰⁸ and 1.7 × 10³⁰⁸
+	Precision: 15–16 digits
+	double y = 3.14159265358979;
+
+By Default:
+	it would be a double:
+	doube num = 4.88;
+	double num = 4.88d;
+	float gpa = 2.53f;
