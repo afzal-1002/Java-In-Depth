@@ -35,278 +35,732 @@ void Foo();
 are two Methods and variables:
 
 
+# Java Variables & Data Types
+
+A structured guide to **Java variables, primitive types, number systems, and variable scope**.
+
+---
+
+# 📘 Table of Contents
+
+- [Variables](#variables)
+- [Object References](#object-references)
+- [Primitive Data Types](#primitive-data-types)
+- [Number Literals](#number-literals)
+- [Floating Point Numbers](#floating-point-numbers)
+- [BigDecimal (High Precision Numbers)](#bigdecimal-high-precision-numbers)
+- [Character Type](#character-type)
+- [Boolean Type](#boolean-type)
+- [Variable Scope](#variable-scope)
+
+---
+
 # Variables
-## 1. Variables :  <Type> <name> [=literal or expression]
-Every Variable has a data type (Java is static Type Language)  it holds the value;
-Type is fixed: When we declare the varible we define the type can not be changed.
 
+A **variable** stores a value in memory.
+
+Java is a **statically typed language**, meaning:
+
+- Every variable must have a **type**
+- The **type cannot change after declaration**
+
+## Syntax
+
+```java
+<Type> <name> = <literal | expression>;
+```
+
+## Examples
+
+```java
 int num = 45;
-String name = " Muhammad" 
-int num = 45_5; 
+String name = "Muhammad";
+```
 
+Numeric literals can include underscores for readability:
 
-String name = "Muhammad" | Object Reference
-String name = new String("Muhammad") | Object Reference
+```java
+int population = 1_000_000;
+```
 
-public Class Student{
+---
+
+> 🎯 **Important**  
+> Java variables must always be declared **with a type before use**.
+
+---
+
+# Object References
+
+Objects in Java are stored using **references**.
+
+```java
+String name = "Muhammad";
+String name2 = new String("Muhammad");
+```
+
+Both variables store **references to String objects**.
+
+---
+
+## Example Class
+
+```java
+public class Student {
+
 	int id = 100;
-	int nextId = id +1;
+	int nextId = id + 1;
 
 	String name;
-	name = "Afzal"; => not possible 
 
+	void compute() {
+		System.out.println(id);
+		System.out.println(nextId);
+	}
 
-	 void comput()
-	 {
-		system.out.println(id);
-		system.out.println(nextId);
-	 }
+}
+```
+
+---
+
+> 🎯 **Important**
+
+You cannot assign values directly in the class body like this:
+
+```java
+String name;
+name = "Afzal"; // ❌ Not allowed outside methods or constructors
+```
+
+Assignments must occur inside:
+
+- constructors  
+- methods  
+- initializer blocks  
+
+---
+
+# Primitive Data Types
+
+Java has **8 primitive data types**.
+
+| Type | Size | Bits | Example | Description |
+|-----|-----|-----|-----|-----|
+| byte | 1 byte | 8 | `byte a = 10;` | Small integer |
+| short | 2 bytes | 16 | `short b = 1000;` | Short integer |
+| int | 4 bytes | 32 | `int c = 100000;` | Most common integer |
+| long | 8 bytes | 64 | `long d = 10000000000L;` | Large integer |
+| float | 4 bytes | 32 | `float e = 5.5f;` | Decimal number |
+| double | 8 bytes | 64 | `double f = 10.99;` | Decimal number |
+| char | 2 bytes | 16 | `char g = 'A';` | Character |
+| boolean | JVM dependent | JVM dependent | `boolean h = true;` | True / False |
+
+---
+
+## Primitive Range
+
+| Type | Range |
+|-----|-----|
+| byte | -2⁷ → 2⁷ − 1 |
+| short | -2¹⁵ → 2¹⁵ − 1 |
+| int | -2³¹ → 2³¹ − 1 |
+| long | -2⁶³ → 2⁶³ − 1 |
+| float | ≈ ±2¹²⁸ |
+| double | ≈ ±2¹⁰²⁴ |
+| char | 0 → 65535 |
+
+Example:
+
+```java
+Byte.MAX_VALUE
+Byte.MIN_VALUE
+```
+
+---
+
+> 🎯 **Important**  
+> `int` is the **most commonly used integer type in Java**.
+
+---
+
+# Number Literals
+
+## Long Literal
+
+```java
+long num = 5465454L;
+```
+
+---
+
+## Hexadecimal (Base 16)
+
+```java
+int intHex = 0x0041;
+long longHex = 0x004L;
+```
+
+Example:
+
+```
+0x0041 = (4 × 16¹) + (1 × 16⁰)
+```
+
+---
+
+## Octal (Base 8)
+
+```java
+int intOctal = 0101;
+```
+
+---
+
+## Binary (Base 2)
+
+```java
+int intBinary = 0b01000001;
+```
+
+Binary conversion:
+
+| Bit | Value |
+|----|----|
+|1|2⁰ = 1|
+|0|2¹ = 0|
+|0|2² = 0|
+|0|2³ = 0|
+|0|2⁴ = 0|
+|0|2⁵ = 0|
+|1|2⁶ = 64|
+|0|2⁷ = 0|
+
+```
+64 + 1 = 65
+```
+
+Example:
+
+```java
+char c = 0b0100_0001;
+System.out.println(c); // A
+
+int x = 0b0100_0001;
+System.out.println(x); // 65
+```
+
+---
+
+# Floating Point Numbers
+
+| Type | Bits | Range | Default | Precision |
+|-----|-----|-----|-----|-----|
+| float | 32 | -3.4E38 → 3.4E38 | 0.0f | 6–7 digits |
+| double | 64 | -1.7E308 → 1.7E308 | 0.0d | 15–16 digits |
+
+---
+
+## Float
+
+```java
+float x = 3.14f;
+```
+
+- 32 bits
+- Precision: 6–7 digits
+
+---
+
+## Double
+
+```java
+double y = 3.14159265358979;
+```
+
+- 64 bits
+- Precision: 15–16 digits
+
+---
+
+> 🎯 **Important**
+
+Decimal numbers are **double by default**.
+
+```java
+double num = 4.88;
+float gpa = 2.53f;
+```
+
+---
+
+# BigDecimal (High Precision Numbers)
+
+```java
+import java.math.BigDecimal;
+```
+
+`BigDecimal` is used when **exact precision is required** (especially for financial calculations).
+
+Example:
+
+```java
+BigDecimal one = new BigDecimal("0.1");
+BigDecimal two = new BigDecimal("0.2");
+
+System.out.println(one.add(two));
+```
+
+---
+
+> 🎯 **Important**
+
+Always create `BigDecimal` using **String values**.
+
+Correct:
+
+```java
+new BigDecimal("0.1");
+```
+
+Avoid:
+
+```java
+new BigDecimal(0.1);
+```
+
+---
+
+## BigDecimal Operations
+
+| Operation | Method |
+|-----|-----|
+| add | `a.add(b)` |
+| subtract | `a.subtract(b)` |
+| multiply | `a.multiply(b)` |
+| divide | `a.divide(b)` |
+| compare | `a.compareTo(b)` |
+
+---
+
+## BigDecimal List Example
+
+```java
+List<BigDecimal> numbers = new ArrayList<>();
+
+numbers.add(new BigDecimal("10.5"));
+numbers.add(new BigDecimal("20.7"));
+numbers.add(new BigDecimal("30.9"));
+```
+
+Stream example:
+
+```java
+numbers.stream().forEach(System.out::println);
+```
+
+Filter example:
+
+```java
+numbers.stream()
+	   .filter(n -> n.compareTo(new BigDecimal("20")) > 0)
+	   .forEach(System.out::println);
+```
+
+---
+
+# Character Type
+
+```java
+char letter = 'A';
+char number = '5';
+char symbol = '@';
+```
+
+| Type | Bits |
+|-----|-----|
+| char | 16 bits |
+
+Range:
+
+```
+0 → 65535
+```
+
+---
+
+## ASCII / Unicode Example
+
+```java
+char c = 65;
+System.out.println(c); // A
+```
+
+---
+
+## UTF-16 Encoding
+
+Java stores characters using **UTF-16 encoding**.
+
+Example:
+
+```
+'B'
+Unicode → U+0042
+Binary → 00000000 01000010
+```
+
+Unicode representation:
+
+```java
+'\u0042'
+```
+
+```
+MIN_VALUE = '\u0000'
+MAX_VALUE = '\uFFFF'
+```
+
+---
+
+## Ways to Initialize char
+
+```java
+char c = 'A';
+char c = 65;
+char c = '\u0041';
+char c = (char)66;
+```
+
+From String:
+
+```java
+String s = "Hello";
+char c = s.charAt(0);
+```
+
+From user input:
+
+```java
+Scanner sc = new Scanner(System.in);
+char c = sc.next().charAt(0);
+```
+
+---
+
+# Boolean Type
+
+```java
+boolean isLoggedIn = true;
+boolean isAdmin = false;
+```
+
+Boolean stores **true or false values**.
+
+---
+
+## Final Boolean
+
+`final` means the value **cannot change after assignment**.
+
+```java
+final boolean DEBUG_MODE = true;
+final boolean IS_PRODUCTION = false;
+```
+
+---
+
+> 🎯 **Important**
+
+A `final` variable can **only be assigned once**.
+
+---
+
+# Variable Scope
+
+Java has **three types of variables**.
+
+---
+
+## 1. Instance Variables
+
+Belong to **an object of a class**.
+
+```java
+class Student {
+	int age;
+}
+```
+
+Example:
+
+```java
+Student s1 = new Student();
+Student s2 = new Student();
+```
+
+Each object has **its own copy**.
+
+---
+
+## 2. Static Variables
+
+Belong to the **class itself**.
+
+```java
+class Student {
+	static int count;
+}
+```
+
+Usage:
+
+```java
+Student.count = 10;
+```
+
+All objects share the **same variable**.
+
+---
+
+## 3. Local Variables
+
+Declared **inside methods or blocks**.
+
+```java
+class Test {
+
+	void show() {
+
+		int x = 10;
+
+		System.out.println(x);
+	}
+
+}
+```
+
+Scope: **only inside the method**.
+
+---
+
+## Variable Scope Summary
+
+| Type | Location | Scope | Default Value |
+|-----|-----|-----|-----|
+| Instance | inside class | object | yes |
+| Static | inside class | class | yes |
+| Local | inside method | method | no |
+
+---
+
+## Example
+
+```java
+class Example {
+
+	int age;           // instance variable
+	static int count;  // static variable
+
+	void show() {
+
+		int x = 10;    // local variable
+
+		System.out.println(x);
+	}
+
+}
+```
+
+---
+
+### Memory Trick
+
+```
+Local    → inside method
+Instance → inside object
+Static   → inside class
+```
+
+---
+
+# Instance & Static Variables
+
+Instance and Static variables are declared **at the class level**.
+
+Common properties:
+
+- Declared at **class-level**
+- Have a **default value**
+- Scope depends on **instance or class**
+
+> [!NOTE]
+> Instance and static variables are also referred to as **fields** or **attributes**.
+
+---
+
+# Instance Variables
+
+Instance variables represent the **state of an object**.
+
+### Characteristics
+
+- Declared inside a class but **outside methods**
+- Each **object has its own copy**
+- Values are **unique for each object**
+- Accessed through an **object reference**
+- cannot be re-initiliazed directly within class
+
+---
+
+### Example
+
+```java
+class Student {
+
+    int id;
+    String name;
 
 }
 
-## 2. Primitive Types
+public class Main {
 
-Java has **8 primitive data types**:
+    public static void main(String[] args) {
 
-| Type     | Size (Bytes) | Size (Bits) 	| Example                     	| Description 						|
-|----------|--------------|-------------	|-----------------------------	|-------------						|
-| byte     | 1 byte       | 8 bits      	| `byte a = 10;`              	| Small integer 					| 
-| short    | 2 bytes      | 16 bits     	| `short b = 1000;`           	| Short integer 					|
-| int      | 4 bytes      | 32 bits     	| `int c = 100000;`           	| Most common integer type 			|
-| long     | 8 bytes      | 64 bits     	| `long d = 10000000000L;`    	| Large integer 					|
-| float    | 4 bytes      | 32 bits     	| `float e = 5.5f;`           	| Decimal number (single precision) |
-| double   | 8 bytes      | 64 bits     	| `double f = 10.99;`         	| Decimal number (double precision) |
-| char     | 2 bytes      | 16 bits     	| `char g = 'A';`             	| Single character (Unicode) 		|
-| boolean  | JVM dependent| JVM dependent 	| `boolean h = true;`        	| True or false value 				|
+        Student s1 = new Student();
+        Student s2 = new Student();
 
-| Type    | Size (Bytes)  | Size (Bits)   | Value Range         | Example                  |
-| ------- | ------------- | ------------- | ------------------- | ------------------------ |
-| byte    | 1 byte        | 8 bits        | **-2⁷ to 2⁷ − 1**   | `byte a = 10;`           |
-| short   | 2 bytes       | 16 bits       | **-2¹⁵ to 2¹⁵ − 1** | `short b = 1000;`        |
-| int     | 4 bytes       | 32 bits       | **-2³¹ to 2³¹ − 1** | `int c = 100000;`        |
-| long    | 8 bytes       | 64 bits       | **-2⁶³ to 2⁶³ − 1** | `long d = 10000000000L;` |
-| float   | 4 bytes       | 32 bits       | **≈ ±2¹²⁸**         | `float e = 5.5f;`        |
-| double  | 8 bytes       | 64 bits       | **≈ ±2¹⁰²⁴**        | `double f = 10.99;`      |
-| char    | 2 bytes       | 16 bits       | **0 to 2¹⁶ − 1**    | `char g = 'A';`          |
-| boolean | JVM dependent | JVM dependent | **true / false**    | `boolean h = true;`      |
+        s1.id = 1;
+        s2.id = 2;
 
-	Range example
-		byte: -128 → 127
-		Because: 2^8 = 256 values
+        System.out.println(s1.id);
+        System.out.println(s2.id);
 
-		Byte.MAX_VALUE;
-		Byte.MIN_VALUE;
+    }
 
-	long num = 5465454L;
+}
+```
 
-**Hexa formate:**
-	MAX_VALUE = 0x7ffffff;
-	int intHex= 0x0041 => 16 power 0 + 1 + 16 poewer 1 * 4
-	long longHex = 0x004L;
+### Output
 
-**Octal:**
-	int intOctal = 0101;
+```
+1
+2
+```
 
-**Binary:** 
-	int intBinary = 0b01000001; => 65
-	So Java reads it as: 01000001
-	| Bit | Value   |
-	| --- | ------- |
-	| 1   | 2⁰ = 1  |
-	| 0   | 2¹ = 0  |
-	| 0   | 2² = 0  |
-	| 0   | 2³ = 0  |
-	| 0   | 2⁴ = 0  |
-	| 0   | 2⁵ = 0  |
-	| 1   | 2⁶ = 64 |
-	| 0   | 2⁷ = 0  |
+Each object has its **own value of `id`**.
 
-	64 + 1 = 65
-	0b0100_0001 = 65
+---
 
-	char c = 0b0100_0001;
-	System.out.println(c); => A
+> [!IMPORTANT]
+> Instance variables represent the **state of an object**.
 
-	int x = 0b0100_0001;
-	System.out.println(x); => 65
+---
 
+# Static Variables
 
-**float && double:**
-| Type       | Bit depth | Value range         | Default | Precision            |
-| ---------- | --------- | ------------------- | ------- | -------------------- |
-| **float**  | 32 bits   | -3.4E38 to 3.4E38   | 0.0f    | 6–7 decimal digits   |
-| **double** | 64 bits   | -1.7E308 to 1.7E308 | 0.0d    | 15–16 decimal digits |
+Static variables belong to the **class itself**.
 
-**float:**
-	Uses 32 bits
-	Stores numbers roughly between
-	-3.4 × 10³⁸ and 3.4 × 10³⁸
-	Precision: 6–7 digits
-	float x = 3.14f;
+Only **one copy exists for the entire class**, shared by all objects.
 
-**double:**
-	Uses 64 bits
-	Stores numbers roughly between
-	-1.7 × 10³⁰⁸ and 1.7 × 10³⁰⁸
-	Precision: 15–16 digits
-	double y = 3.14159265358979;
+### Characteristics
 
-	By Default:
-		it would be a double:
-		doube num = 4.88;
-		double num = 4.88d;
-		float gpa = 2.53f;
+- Declared using the `static` keyword
+- One copy **shared across all objects**
+- Accessible using **class name**
+- Can also be accessed using **object reference**
 
-**BigDecimal:** 
-		(import java.math.BigDecimal;)
-		BigDecimal is a Java class used to store very precise decimal numbers.
+---
 
-		When dealing with money use BigDecimal:
-		Avoid Float and Double when exact answer are require
-		BigDecimal one =  new BigDecimal("0.1");
-		BigDecimal second =  new BigDecimal("0.2");
-		System.out.println(one.add(secnd));
+### Example
 
-		Methods:
-				add subtract multiply divide compaterTo
-				int x = 10;
-				BigDecimal bd = BigDecimal.valueOf(x);
+```java
+class Student {
 
-		Get user input and convert to BigDecimal:
-				Scanner sc = new Scanner(System.in);
-				System.out.println("Enter number:");
-				BigDecimal number = new BigDecimal(sc.nextLine());
-				System.out.println(number);
+    static int count = 0;
 
-		Create an Array of BigDecimal:
-				import java.math.BigDecimal;
+    Student() {
+        count++;
+    }
 
-				BigDecimal[] numbers = new BigDecimal[3];
+}
 
-				numbers[0] = new BigDecimal("10.5");
-				numbers[1] = new BigDecimal("20.7");
-				numbers[2] = new BigDecimal("30.9");
+public class Main {
 
-		Create a List of BigDecimal:
-				import java.math.BigDecimal;
-				import java.util.ArrayList;
-				import java.util.List;
+    public static void main(String[] args) {
 
-				List<BigDecimal> numbers = new ArrayList<>();
+        Student s1 = new Student();
+        Student s2 = new Student();
+        Student s3 = new Student();
 
-				numbers.add(new BigDecimal("10.5"));
-				numbers.add(new BigDecimal("20.7"));
-				numbers.add(new BigDecimal("30.9"));
+        System.out.println(Student.count);
 
-		Stream on List of BigDecimal:
-				numbers.stream().forEach(System.out::println);
+    }
 
-				Filter values greater than 20
-				numbers.stream().filter(n -> n.compareTo(new BigDecimal("20"))> 0).forEach(System.out::println);
+}
+```
 
-**BigDecimal operations:**
-		| Operation | Method           |
-		| --------- | ---------------- |
-		| add       | `a.add(b)`       |
-		| subtract  | `a.subtract(b)`  |
-		| multiply  | `a.multiply(b)`  |
-		| divide    | `a.divide(b)`    |
-		| compare   | `a.compareTo(b)` |
+### Output
+
+```
+3
+```
+
+All objects **share the same static variable**.
+
+---
+
+> [!TIP]
+> Static variables are commonly used for **counters, constants, and shared data**.
+
+---
+
+# Accessing Instance vs Static Variables
+
+### Instance Variable
+
+```java
+Student s = new Student();
+s.id = 10;
+```
+
+### Static Variable
+
+```java
+Student.count = 5;
+```
+
+---
+
+# Summary
+
+| Type | Belongs To | Copies | Access |
+|-----|-----|-----|-----|
+| Instance Variable | Object | One per object | Object reference |
+| Static Variable | Class | One per class | Class name |
+
+---
+
+# Important Concept
+
+Instance and Static variables are also called:
+
+- **Fields**
+- **Attributes**
+
+However:
+
+- **Attributes** usually refer to **instance variables**
+- **Fields** may refer to **both static and instance variables**
 
 
-**Character:**
-	The primitive type for this is char:
-		char letter = 'A';
-		char number = '5';
-		char symbol = '@';
+---
 
-		| Type | Size    | Example |
-		| ---- | ------- | ------- |
-		| char | 16 bits | `'A'`   |
+> [!NOTE]
+> Instance variables represent **object state**, while static variables represent **class-level shared data**.
 
-		| Type     | Bit depth   | Value range      | Default    |
-| -------- | ----------- | ---------------- | ---------- |
-| **char** | **16 bits** | **0 to 2¹⁶ − 1** | `'\u0000'` |
-		2^16 = 65536
-
-	Character from ASCII / Unicode number:
-			char c = 65;
-			System.out.println(c); A
-			char degree = 'B'; =>  (66)
-
-	UTF-16 is an encoding scheme used by Java for characters.
-
-		Example from your slide:
-			'B' → 0042 → 00000000 01000010
-		Explanation:
-			Step 1 — character
-			'B'
-
-			Step 2 — Unicode value (hex)
-			0042 => '\u0042' = 66
-
-			Step 3 — binary representation (16 bits)
-			00000000 01000010
-			0100 => 4
-			0010 => 2
-			Java always stores characters using 16 bits.
-
-			MIN_VALUE = '\u0000'
-			MAX_VALUE = '\uFFFF'
-
-		Using a Character Literal
-				char c = 'A';
-				char digit = '5';
-				char symbol = '$';
-
-		Using an Integer (ASCII / Unicode value)
-				char c = 65;
-				System.out.println(c); => A
-
-		Using Unicode Escape Sequence:
-				\uXXXX
-				char c = '\u0041';
-				System.out.println(c); => A
-
-		Using Casting from an Integer:
-				char c = (char) 66;
-				System.out.println(c); => B
-
-		From a String: 
-				String s = "Hello";
-				char c = s.charAt(0);
-				System.out.println(c);
-
-		From User Input:
-				import java.util.Scanner;
-				Scanner sc = new Scanner(System.in);
-				char c = sc.next().charAt(0);
-				System.out.println(c);
+---
 
 
 
-**Boolean:**
-		boolean is a primitive type that stores true or false.
-		boolean isLoggedIn = true;
-		boolean isAdmin = false;
-
-		final means:
-				The value cannot be changed after it is assigned.
-
-				final boolean isActive = true;
-				final boolean isActive = true;
-				System.out.println(isActive);
-
-				final boolean DEBUG_MODE = true;
-				final boolean IS_PRODUCTION = false;
-
-		Boolean without initialization:
-				By Default it is false:
-				final boolean flag;
-				flag = true;
-
-
-
-
----------------------------------------------------------------------------------------------
+---
 

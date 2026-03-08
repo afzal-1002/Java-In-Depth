@@ -546,4 +546,3 @@ Static   → inside class
 
 ---
 
-✅ **End of Notes**
