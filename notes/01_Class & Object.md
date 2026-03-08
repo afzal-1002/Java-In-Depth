@@ -304,3 +304,9 @@ Java has **8 primitive data types**:
 				By Default it is false:
 				final boolean flag;
 				flag = true;
+
+
+
+
+---------------------------------------------------------------------------------------------
+

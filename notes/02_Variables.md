@@ -267,3 +267,62 @@ Java has **8 primitive data types**:
 				By Default it is false:
 				final boolean flag;
 				flag = true;
+
+
+**Variable Scopee:**
+	In Java, when talking about variable scope, there are 3 main types of variables.
+
+1. Instance Variables:
+	Also called object variables.
+	They belong to an object of a class.
+	class Student {
+    	int age;   // instance variable
+	}
+	Student s1 = new Student();
+	Student s2 = new Student();
+	s1.age
+	s2.age
+
+2. Static Variables:
+	Also called class variables.
+	They belong to the class itself, not to objects.
+
+	class Student {
+    	static int count;
+	}
+	Student.count = 10;
+
+Local Variables:
+	These are variables declared inside a method, constructor, or block.
+	class Test {
+
+		void show() {
+
+			int x = 10;   // local variable
+
+			System.out.println(x);
+		}
+	}
+
+	| Type              | Where declared             | Scope  | Default value |
+	| ----------------- | -------------------------- | ------ | ------------- |
+	| Instance variable | inside class               | object | yes           |
+	| Static variable   | inside class with `static` | class  | yes           |
+	| Local variable    | inside method/block        | method | no            |
+
+	class Example {
+
+		int age;           // instance variable
+		static int count;  // static variable
+
+		void show() {
+
+			int x = 10;    // local variable
+
+			System.out.println(x);
+		}
+	}
+
+	Local   → inside method
+	Instance → inside object
+	Static  → inside class
