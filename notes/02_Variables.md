@@ -15,6 +15,7 @@ A structured guide to **Java variables, primitive types, number systems, and var
 - [Character Type](#character-type)
 - [Boolean Type](#boolean-type)
 - [Variable Scope](#variable-scope)
+- [Type Casting in Java](#type-casting-in-java)
 
 ---
 
@@ -830,4 +831,347 @@ However:
 ---
 
 
+# Multiple Variable Declaration in One Line
 
+Java allows declaring **multiple variables of the same type in one line**.
+
+## Syntax
+
+```java
+<Type> var1, var2, var3;
+```
+
+## Example
+
+```java
+int a, b, c;
+```
+
+All variables are of the **same type (`int`)**.
+
+---
+
+## Declaration with Initialization
+
+You can also initialize them in the same line.
+
+```java
+int a = 10, b = 20, c = 30;
+```
+
+Example program:
+
+```java
+public class Example {
+
+    public static void main(String[] args) {
+
+        int a = 10, b = 20, c = 30;
+
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+
+    }
+
+}
+```
+
+Output
+
+```
+10
+20
+30
+```
+
+---
+
+## Mixed Initialization
+
+Some variables can be initialized while others are not.
+
+```java
+int x = 5, y, z = 10;
+```
+
+---
+
+> [!IMPORTANT]
+> All variables must be of the **same type** when declared in one line.
+
+Incorrect example:
+
+```java
+int a, String name;   // ❌ Not allowed
+```
+
+---
+
+## Best Practice
+
+Although Java allows this:
+
+```java
+int a = 10, b = 20, c = 30;
+```
+
+It is often **better for readability** to write:
+
+```java
+int a = 10;
+int b = 20;
+int c = 30;
+```
+
+Especially in large projects.
+
+---
+
+> [!TIP]
+> Multiple declaration is commonly used in **loops**.
+
+Example:
+
+```java
+for (int i = 0, j = 10; i < j; i++, j--) {
+    System.out.println(i + " " + j);
+}
+```
+
+---
+
+## Summary
+
+| Feature | Description |
+|------|------|
+| Same type required | Yes |
+| Initialization allowed | Yes |
+| Mixed initialization | Allowed |
+| Best practice | Prefer separate lines for clarity |
+
+
+---
+---
+---
+# Type Casting in Java
+
+Type casting means **converting one data type into another data type**.
+
+Java supports two types of casting:
+
+1. **Implicit Casting (Widening Conversion)**
+2. **Explicit Casting (Narrowing Conversion)**
+
+---
+
+# 1. Implicit Casting (Widening Conversion)
+
+Implicit casting happens when a **smaller data type is automatically converted into a larger data type**.
+
+The conversion is done **automatically by the Java compiler**.
+
+Example:
+
+```java
+int x = 65;
+long y = x;   // Implicit casting by compiler
+```
+
+Here:
+
+```
+int → long
+```
+
+No cast is required.
+
+---
+
+> [!NOTE]
+> Implicit casting is called **widening conversion** because the destination type has **more storage capacity**.
+
+---
+
+## Implicit Casting Hierarchy
+
+```
+byte → short → int → long → float → double
+             ↑
+           char
+```
+
+Representation similar to the slide:
+
+```
+byte (8-bit) → short (16-bit) → int (32-bit) → long (64-bit) → float (32-bit) → double (64-bit)
+                                  ↑
+                             char (16-bit)
+```
+
+---
+
+## Example
+
+```java
+public class ImplicitExample {
+
+    public static void main(String[] args) {
+
+        byte a = 10;
+        int b = a;        // byte → int
+
+        int c = 100;
+        long d = c;       // int → long
+
+        float f = d;      // long → float
+
+        double g = f;     // float → double
+
+        System.out.println(b);
+        System.out.println(d);
+        System.out.println(f);
+        System.out.println(g);
+
+    }
+
+}
+```
+
+---
+
+# 2. Explicit Casting (Narrowing Conversion)
+
+Explicit casting happens when a **larger data type is converted into a smaller data type**.
+
+This conversion **must be done manually by the programmer**.
+
+Example:
+
+```java
+double x = 10.5;
+int y = (int) x;   // Explicit casting
+```
+
+Here:
+
+```
+double → int
+```
+
+The decimal part is removed.
+
+---
+
+> [!IMPORTANT]
+> Explicit casting may cause **data loss**.
+
+---
+
+## Explicit Casting Hierarchy
+
+```
+double → float → long → int → short → byte
+                      ↓
+                    char
+```
+
+---
+
+## Example
+
+```java
+public class ExplicitExample {
+
+    public static void main(String[] args) {
+
+        double a = 9.78;
+        int b = (int) a;
+
+        int c = 130;
+        byte d = (byte) c;
+
+        System.out.println(b);
+        System.out.println(d);
+
+    }
+
+}
+```
+
+Output
+
+```
+9
+-126
+```
+
+Explanation:
+
+```
+130 exceeds byte range (-128 to 127)
+```
+
+So overflow occurs.
+
+---
+
+# Visual Representation of Type Casting
+
+```
+Widening (Implicit)
+
+byte → short → int → long → float → double
+             ↑
+           char
+
+
+Narrowing (Explicit)
+
+double → float → long → int → short → byte
+```
+
+---
+
+# Summary Table
+
+| Feature | Implicit Casting | Explicit Casting |
+|------|------|------|
+| Other name | Widening Conversion | Narrowing Conversion |
+| Direction | Smaller → Larger | Larger → Smaller |
+| Compiler action | Automatic | Manual |
+| Cast required | No | Yes |
+| Data loss | No | Possible |
+
+---
+
+# Example Together
+
+```java
+public class CastingDemo {
+
+    public static void main(String[] args) {
+
+        int num = 65;
+
+        long longNum = num;        // implicit casting
+        float floatNum = longNum;  // implicit casting
+
+        double d = 10.9;
+        int i = (int) d;           // explicit casting
+
+        System.out.println(longNum);
+        System.out.println(floatNum);
+        System.out.println(i);
+
+    }
+
+}
+```
+
+---
+
+> [!TIP]
+> Use **implicit casting whenever possible** because it is safe and does not lose data.
+
+---
