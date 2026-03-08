@@ -212,3 +212,95 @@ Most important BigDecimal operations:
 		| multiply  | `a.multiply(b)`  |
 		| divide    | `a.divide(b)`    |
 		| compare   | `a.compareTo(b)` |
+
+
+Character in Java:
+		The primitive type for this is char:
+		char letter = 'A';
+		char number = '5';
+		char symbol = '@';
+
+		| Type | Size    | Example |
+		| ---- | ------- | ------- |
+		| char | 16 bits | `'A'`   |
+
+		| Type     | Bit depth   | Value range      | Default    |
+| -------- | ----------- | ---------------- | ---------- |
+| **char** | **16 bits** | **0 to 2¹⁶ − 1** | `'\u0000'` |
+		2^16 = 65536
+
+Character from ASCII / Unicode number:
+		char c = 65;
+		System.out.println(c); A
+		char degree = 'B'; =>  (66)
+
+UTF-16 is an encoding scheme used by Java for characters.
+		Example from your slide
+		'B' → 0042 → 00000000 01000010
+
+		Explanation:
+		Step 1 — character
+		'B'
+
+		Step 2 — Unicode value (hex)
+		0042 => '\u0042' = 66
+
+		Step 3 — binary representation (16 bits)
+		00000000 01000010
+		0100 => 4
+		0010 => 2
+		Java always stores characters using 16 bits.
+
+		MIN_VALUE = '\u0000'
+		MAX_VALUE = '\uFFFF'
+
+Using a Character Literal
+		char c = 'A';
+		char digit = '5';
+		char symbol = '$';
+
+Using an Integer (ASCII / Unicode value)
+		char c = 65;
+		System.out.println(c); => A
+
+Using Unicode Escape Sequence:
+		\uXXXX
+		char c = '\u0041';
+		System.out.println(c); => A
+
+Using Casting from an Integer:
+		char c = (char) 66;
+		System.out.println(c); => B
+
+From a String: 
+		String s = "Hello";
+		char c = s.charAt(0);
+		System.out.println(c);
+
+From User Input:
+		import java.util.Scanner;
+		Scanner sc = new Scanner(System.in);
+		char c = sc.next().charAt(0);
+		System.out.println(c);
+
+
+
+Boolean:
+		boolean is a primitive type that stores true or false.
+		boolean isLoggedIn = true;
+		boolean isAdmin = false;
+
+final means:
+		The value cannot be changed after it is assigned.
+
+		final boolean isActive = true;
+		final boolean isActive = true;
+		System.out.println(isActive);
+
+		final boolean DEBUG_MODE = true;
+		final boolean IS_PRODUCTION = false;
+
+Boolean without initialization:
+		By Default it is false:
+		final boolean flag;
+		flag = true;
